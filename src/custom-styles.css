@@ -1,0 +1,8 @@
+/* !!!!!!! Banner Carousel !!!!!!!! */
+.carousel-slider {
+  height: 100%;
+}
+.thumbs-wrapper {
+  display: flex;
+  justify-content: center;
+}

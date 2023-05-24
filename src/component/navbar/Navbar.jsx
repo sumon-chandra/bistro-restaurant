@@ -53,7 +53,7 @@ const Navbar = () => {
         </div>
         <div className="flex items center">
           <div className="indicator mr-4">
-            <FiShoppingCart className="text-2xl" />
+            <FiShoppingCart className="text-2xl text-white" />
             <span className="badge badge-sm bg-black border-0 indicator-item">
               8
             </span>
