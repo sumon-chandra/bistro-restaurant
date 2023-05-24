@@ -11,7 +11,6 @@ import slider6 from "../../../assets/home/slide2.jpg";
 const Slider = () => {
   return (
     <Swiper
-      slidesPerView={4}
       pagination={{
         clickable: true,
       }}

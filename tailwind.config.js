@@ -11,8 +11,8 @@ export default {
         secondaryColor: "rgba(209, 160, 84, 0.7);",
       },
       fontFamily: {
-        inter: "inter",
-        cinzel: "cinzel"
+        inter: ["Inter"],
+        cinzel: ["Cinzel"]
       }
     },
   },
