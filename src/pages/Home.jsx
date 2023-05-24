@@ -3,6 +3,7 @@ import ChefRecommends from "../component/sections/ChefRecommends";
 import Menu from "../component/sections/Menu";
 import Features from "../component/sections/Features";
 import OrderOnline from "../component/sections/order-online/OrderOnline";
+import Testimonials from "../component/sections/Testimonials";
 
 const Home = () => {
   return (
@@ -26,13 +27,14 @@ const Home = () => {
           </div>
         </section>
         <Menu />
-        <section className="lg:mt-20 mt-10 lg:w-[1320px] lg:h-[250px] h-24 mx-auto bg-black flex items-center justify-center ">
+        <section className="lg:mt-20 mt-10 lg:w-[1320px] lg:h-[250px] lg:px-0 px-4 h-24 mx-auto bg-black flex items-center justify-center ">
           <p className="lg:text-5xl font-[600] font-cinzel text-white">
             Call Us: +88 0192345678910
           </p>
         </section>
         <ChefRecommends />
         <Features />
+        <Testimonials />
       </main>
     </>
   );
