@@ -1,15 +1,16 @@
 import Banner from "../component/home/Banner";
-import Features from "../component/sections/Features";
+import ChefRecommends from "../component/sections/ChefRecommends";
 import Menu from "../component/sections/Menu";
+import Features from "../component/sections/Features";
 import OrderOnline from "../component/sections/order-online/OrderOnline";
 
 const Home = () => {
   return (
     <>
       <Banner />
-      <main className="lg:px-0 px-4">
+      <main className="">
         <OrderOnline />
-        <section className="lg:mt-20 lg:w-[1320px] lg:h-[500px] flex items-center justify-center mx-auto lg:border-0 border shadow-xl lg:py-0 lg:bg-[url('https://i.ibb.co/zGkdsvb/chef-service.jpg')]">
+        <section className="lg:mt-20 lg:w-[1320px] lg:h-[500px] lg:px-0 px-4 flex items-center justify-center mx-auto lg:border-0 border shadow-xl lg:py-0 lg:bg-[url('https://i.ibb.co/zGkdsvb/chef-service.jpg')]">
           <div className="lg:w-3/4 lg:py-20 bg-white">
             <div className="card-body lg:text-center">
               <h2 className="uppercase lg:text-4xl text-xl font-cinzel font-normal">
@@ -30,6 +31,7 @@ const Home = () => {
             Call Us: +88 0192345678910
           </p>
         </section>
+        <ChefRecommends />
         <Features />
       </main>
     </>

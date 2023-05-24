@@ -9,7 +9,7 @@ const Menu = () => {
       .then((data) => setMenu(data.slice(0, 6)));
   }, []);
   return (
-    <section className="lg:w-[1320px] lg:mt-20 mt-8 mx-auto">
+    <section className="lg:w-[1320px] lg:mt-20 mt-8 mx-auto lg:px-0 px-4">
       <SectionHead heading={"From Our menu"} subHeading={"Check it out"} />
       <div className="lg:grid grid-cols-2 gap-8 pt-10">
         {menu.map((menuItem) => (
