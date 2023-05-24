@@ -6,3 +6,27 @@
   display: flex;
   justify-content: center;
 }
+
+/* !!!!!!! Order Online slider !!!!!!!! */
+.order-online-slider > .swiper-pagination {
+  position: relative;
+  bottom: -1px;
+  padding: 20px 0;
+}
+.order-online-slider > .swiper-pagination > .swiper-pagination-bullet {
+  width: 15px;
+  height: 15px;
+}
+.order-online-slider > .swiper-pagination > .swiper-pagination-bullet-active {
+  width: 15px;
+  height: 15px;
+}
+.order-online-slider > .swiper-wrapper > .swiper-slide {
+  margin-right: 1em !important;
+  width: 270px;
+}
+@media only screen and (max-width: 768px) {
+  .order-online-slider > .swiper-wrapper > .swiper-slide {
+    width: 270px !important;
+  }
+}
