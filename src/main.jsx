@@ -1,4 +1,6 @@
 import React from "react";
+import { HelmetProvider } from "react-helmet-async";
+import { ParallaxProvider } from "react-scroll-parallax";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
@@ -12,6 +14,10 @@ import "swiper/css/bundle";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <HelmetProvider>
+      <ParallaxProvider>
+        <App />
+      </ParallaxProvider>
+    </HelmetProvider>
   </React.StrictMode>
 );

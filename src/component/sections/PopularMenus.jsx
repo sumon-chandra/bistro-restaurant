@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SectionHead from "./SectionHead";
 
-const Menu = () => {
+const PopularMenus = () => {
   const [menu, setMenu] = useState([]);
   useEffect(() => {
     fetch("./menu.json")
@@ -43,4 +43,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default PopularMenus;

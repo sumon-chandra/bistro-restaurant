@@ -16,7 +16,7 @@ const Navbar = () => {
         <NavItem value="Dashboard" to="/dashboard" />
       </li>
       <li>
-        <NavItem value="Our menu" to="/our-menu" />
+        <NavItem value="Our menu" to="/menu" />
       </li>
       <li>
         <NavItem value="Our shop" to="/our-shop" />
