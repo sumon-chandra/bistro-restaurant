@@ -17,7 +17,12 @@ const Home = () => {
       <Banner />
       <main className="">
         <OrderOnline />
-        <Cover inHome={true} img={coverImg} />
+        <Cover
+          inHome={true}
+          img={coverImg}
+          title="Bistro Boss"
+          details="Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, libero accusamus laborum deserunt ratione dolor officiis praesentium! Deserunt magni aperiam dolor eius dolore at, nihil iusto ducimus incidunt quibusdam nemo."
+        />
         <PopularMenus />
         <section className="lg:mt-20 mt-10 lg:w-[1320px] lg:h-[250px] lg:px-0 px-4 h-24 mx-auto bg-black flex items-center justify-center ">
           <p className="lg:text-5xl font-[600] font-cinzel text-white">
