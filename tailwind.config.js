@@ -13,6 +13,9 @@ export default {
       fontFamily: {
         inter: ["Inter"],
         cinzel: ["Cinzel"]
+      },
+      width: {
+        "1200": "1200px"
       }
     },
   },

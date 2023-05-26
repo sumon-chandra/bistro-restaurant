@@ -19,7 +19,7 @@ const Navbar = () => {
         <NavItem value="Our menu" to="/menu" />
       </li>
       <li>
-        <NavItem value="Our shop" to="/our-shop" />
+        <NavItem value="Our shop" to="/shop/salad" />
       </li>
     </>
   );

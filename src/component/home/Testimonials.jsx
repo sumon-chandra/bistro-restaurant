@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SectionHead from "./SectionHead";
+import SectionHead from "../sections/SectionHead";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import ReactStars from "react-rating-stars-component";
@@ -8,12 +8,12 @@ import { FaQuoteLeft } from "react-icons/fa";
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("./reviews.json")
+    fetch("http://localhost:5000/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
   return (
-    <section className="lg:w-[1320px] lg:mt-20 mt-8 mx-auto font-inter">
+    <section className="lg:w-1200 lg:mt-20 mt-8 mx-auto font-inter">
       <SectionHead
         heading={"Testimonials"}
         subHeading={"What our client say"}

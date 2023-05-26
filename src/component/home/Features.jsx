@@ -1,10 +1,10 @@
-import SectionHead from "./SectionHead";
+import SectionHead from "../sections/SectionHead";
 import featureImg from "../../assets/home/featured.jpg";
 const Features = () => {
   return (
     <section
       style={{ "--image-url": `url(${featureImg})` }}
-      className="lg:mt-20 mt-8 lg:w-[1320px] mx-auto py-10 font-inter bg-[image:var(--image-url)] bg-cover relative h-[650px] lg:h-[700px] bg-fixed"
+      className="lg:mt-20 mt-8 lg:w-1200 mx-auto py-10 font-inter bg-[image:var(--image-url)] bg-cover relative h-[650px] lg:h-[700px] bg-fixed"
     >
       <div className="absolute top-0 bottom-0 bg-[#151515bd] lg:p-24 p-10">
         <SectionHead

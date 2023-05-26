@@ -35,7 +35,7 @@ const Menu = () => {
           <SectionHead heading="Today's offer" subHeading="Don't miss" />
         </div>
         {/* ***** Offered Menu Items */}
-        <div className="lg:w-[1320px] px-4 lg:px-0 mx-auto mb-10">
+        <div className="lg:w-1200 px-4 lg:px-0 mx-auto mb-10">
           <MenuCategory items={offered} />
         </div>
         {/* ***** Desserts Menu Items */}
@@ -45,7 +45,7 @@ const Menu = () => {
             details="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
             img={dessertImg}
           />
-          <div className="lg:w-[1320px] px-4 lg:px-0 mx-auto mt-10">
+          <div className="lg:w-1200 px-4 lg:px-0 mx-auto mt-10">
             <MenuCategory items={desserts} />
           </div>
         </div>
@@ -56,7 +56,7 @@ const Menu = () => {
             details="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
             img={pizzaImg}
           />
-          <div className="lg:w-[1320px] px-4 lg:px-0 mx-auto mt-10">
+          <div className="lg:w-1200 px-4 lg:px-0 mx-auto mt-10">
             <MenuCategory items={pizza} />
           </div>
         </div>
@@ -67,7 +67,7 @@ const Menu = () => {
             details="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
             img={saladImg}
           />
-          <div className="lg:w-[1320px] px-4 lg:px-0 mx-auto mt-10">
+          <div className="lg:w-1200 px-4 lg:px-0 mx-auto mt-10">
             <MenuCategory items={salads} />
           </div>
         </div>
@@ -78,7 +78,7 @@ const Menu = () => {
             details="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
             img={soupImg}
           />
-          <div className="lg:w-[1320px] px-4 lg:px-0 mx-auto mt-10">
+          <div className="lg:w-1200 px-4 lg:px-0 mx-auto mt-10">
             <MenuCategory items={soups} />
           </div>
         </div>

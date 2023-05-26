@@ -5,6 +5,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import "./custom-styles.css";
+import "react-tabs/style/react-tabs.css";
 
 // Swiper CSS CDN Plugin
 import "swiper/css";
