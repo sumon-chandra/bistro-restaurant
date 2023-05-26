@@ -44,3 +44,11 @@
     font-size: 20px !important;
   }
 }
+
+/* !!!!!!! Our shop React Tabs !!!!!!!! */
+.shop-react-tabs > .react-tabs__tab--selected {
+  border: 0;
+  border-bottom: 4px solid #d1a054;
+  color: #d1a054;
+  outline: 0 !important;
+}

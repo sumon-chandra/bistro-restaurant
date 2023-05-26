@@ -33,28 +33,40 @@ const Shop = () => {
           <SectionHead heading="Our Shop" subHeading="Explore now" />
         </div>
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-          <TabList>
-            <Tab>Salad</Tab>
-            <Tab>Pizza</Tab>
-            <Tab>Soups</Tab>
-            <Tab>Deserts</Tab>
-            <Tab>Drinks</Tab>
+          <TabList className="shop-react-tabs border-0 flex justify-center items-center gap-x-6 text-xl font-bold">
+            <Tab className="border-b-4 border-transparent py-2 cursor-pointer hover:text-primaryColor border-primaryColor">
+              Salad
+            </Tab>
+            <Tab className="border-b-4 border-transparent p-2 cursor-pointer">
+              Pizza
+            </Tab>
+            <Tab className="border-b-4 border-transparent p-2 cursor-pointer">
+              Soups
+            </Tab>
+            <Tab className="border-b-4 border-transparent p-2 cursor-pointer">
+              Deserts
+            </Tab>
+            <Tab className="border-b-4 border-transparent p-2 cursor-pointer">
+              Drinks
+            </Tab>
           </TabList>
-          <TabPanel>
-            <FoodCategory items={salads} />
-          </TabPanel>
-          <TabPanel>
-            <FoodCategory items={pizza} />
-          </TabPanel>
-          <TabPanel>
-            <FoodCategory items={soups} />
-          </TabPanel>
-          <TabPanel>
-            <FoodCategory items={desserts} />
-          </TabPanel>
-          <TabPanel>
-            <FoodCategory items={drinks} />
-          </TabPanel>
+          <div className="pt-14">
+            <TabPanel>
+              <FoodCategory items={salads} />
+            </TabPanel>
+            <TabPanel>
+              <FoodCategory items={pizza} />
+            </TabPanel>
+            <TabPanel>
+              <FoodCategory items={soups} />
+            </TabPanel>
+            <TabPanel>
+              <FoodCategory items={desserts} />
+            </TabPanel>
+            <TabPanel>
+              <FoodCategory items={drinks} />
+            </TabPanel>
+          </div>
         </Tabs>
       </section>
     </>
