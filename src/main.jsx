@@ -13,11 +13,14 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/bundle";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import AuthProvider from "./context-provider/AuthProvider.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HelmetProvider>
       <ParallaxProvider>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </ParallaxProvider>
     </HelmetProvider>
   </React.StrictMode>
