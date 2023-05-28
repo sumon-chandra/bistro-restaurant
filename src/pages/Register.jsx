@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
 import bg from "../assets/others/pattern.png";
@@ -14,28 +14,29 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [disabled, setDisabled] = useState(true);
-  const captchaRef = useRef(null);
-  const { createNewUser, signInWithGoogle } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const { createNewUser, signInWithGoogle, userInfo } = useContext(AuthContext);
 
   // !! Handle Sign in
   const handleRegister = (data) => {
     const email = data.email;
     const password = data.password;
     createNewUser(email, password)
-      .then((result) => {
-        console.log(result.user);
+      .then(() => {
+        userInfo(data.name);
+        navigate("/");
       })
-      .catch((err) => console.error(err.message));
+      .catch((err) => setError(err.message));
   };
 
   // !!! Handle google sign in
   const handleGoogleSignIn = () => {
     signInWithGoogle()
-      .then((result) => {
-        console.log(result.user);
+      .then(() => {
+        navigate("/");
       })
-      .catch((err) => console.error(err.message));
+      .catch((err) => setError(err.message));
   };
 
   useEffect(() => {
@@ -102,13 +103,22 @@ const Register = () => {
                 </label>
                 <input
                   type="password"
-                  {...register("password", { required: true })}
+                  {...register("password", {
+                    required: true,
+                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                  })}
                   placeholder="Enter Your Password"
                   className="input"
                 />
-                {errors.password && (
+                {errors.password?.type === "required" && (
                   <span className="text-red-400 text-xs font-semibold mt-2">
-                    This field is required
+                    This field is required.
+                  </span>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <span className="text-red-400 text-xs font-semibold mt-2">
+                    Password must contain at least one uppercase letter, one
+                    lowercase letter, one number and one special character.
                   </span>
                 )}
               </div>

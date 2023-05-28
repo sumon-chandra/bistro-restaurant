@@ -1,9 +1,35 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FiMenu, FiShoppingCart } from "react-icons/fi";
+import Swal from "sweetalert2";
 import { FaRegUserCircle } from "react-icons/fa";
 import NavItem from "./NavItem";
+import { AuthContext } from "../../context-provider/AuthProvider";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const { user, logoutUser } = useContext(AuthContext);
+  const [cart] = useCart();
+  console.log(cart);
+
+  const handleLogout = () => {
+    logoutUser().then(() => {
+      Swal.fire({
+        title: "Are you sure?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#D1A054",
+        cancelButtonColor: "#ffffff",
+        confirmButtonText: "Log out",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("", "You are logged out.", "success");
+          navigate("/login");
+        }
+      });
+    });
+  };
   const navOptions = (
     <>
       <li>
@@ -52,14 +78,36 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="flex items center">
-          <div className="indicator mr-4">
+          <NavLink
+            to="/dashboard/my-cart"
+            className="indicator mr-4 hover:text-[#EEFF25]"
+          >
             <FiShoppingCart className="text-2xl text-white" />
             <span className="badge badge-sm bg-black border-0 indicator-item">
-              8
+              {cart.length}
             </span>
-          </div>
-          <NavItem value="Login" to="/login" />
-          <FaRegUserCircle className="text-2xl ml-3 text-white" />
+          </NavLink>
+          {user ? (
+            <button
+              onClick={handleLogout}
+              className="bg-transparent uppercase text-lg text-white hover:text-[#EEFF25] font-bold"
+            >
+              Logout
+            </button>
+          ) : (
+            <NavItem value="Login" to="/login" />
+          )}
+          {user?.photoURL ? (
+            <button className="btn rounded-full">
+              <img
+                src={user.photoURL}
+                className="w-12 h-10 rounded-full"
+                alt="user photo"
+              />{" "}
+            </button>
+          ) : (
+            <FaRegUserCircle className="text-2xl ml-3 text-white" />
+          )}
         </div>
       </div>
     </nav>

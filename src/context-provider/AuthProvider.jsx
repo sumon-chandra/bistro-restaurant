@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
   // Logout user
   const logoutUser = () => {
     setLoading(true);
-    return signOut();
+    return signOut(auth);
   };
 
   // Get user info

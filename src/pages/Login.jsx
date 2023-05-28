@@ -1,36 +1,54 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
+import { useForm } from "react-hook-form";
 
 import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
 import bg from "../assets/others/pattern.png";
 import loginImg from "../assets/others/register.png";
+import { AuthContext } from "../context-provider/AuthProvider";
 const Login = () => {
+  const { loginUser, signInWithGoogle } = useContext(AuthContext);
   const [disabled, setDisabled] = useState(true);
-  const captchaRef = useRef(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   // !! Verify that captcha
-  const handleVerify = () => {
-    if (validateCaptcha(captchaRef.current.value)) {
+  const handleVerify = (e) => {
+    if (validateCaptcha(e.target.value)) {
       setDisabled(false);
-      captchaRef.current.value = "";
+      e.target.value = "";
     } else {
       setDisabled(true);
+      e.target.value = "";
     }
   };
 
   // !! Handle Sign in
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    const userInfo = { email, password };
+  const handleLogin = (data) => {
+    loginUser(data.email, data.password).then(() => {
+      reset();
+      navigate(from);
+    });
+  };
+
+  // !! Login with Google
+  const handleGoogleLogin = () => {
+    signInWithGoogle().then(() => {
+      navigate(from);
+    });
   };
 
   useEffect(() => {
@@ -53,7 +71,10 @@ const Login = () => {
               alt=""
               className="w-1/2 hidden lg:block bg-transparent"
             />
-            <form onSubmit={handleLogin} className="card-body font-inter">
+            <form
+              onSubmit={handleSubmit(handleLogin)}
+              className="card-body font-inter"
+            >
               <div className="text-center">
                 <h4 className="text-3xl font-bold">Login</h4>
               </div>
@@ -64,10 +85,15 @@ const Login = () => {
                 <input
                   type="email"
                   required
-                  name="name"
+                  {...register("email", { required: true })}
                   placeholder="Enter Your Email"
                   className="input"
                 />
+                {errors.name && (
+                  <span className="text-red-400 text-xs font-semibold mt-2">
+                    This field is required
+                  </span>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -75,11 +101,15 @@ const Login = () => {
                 </label>
                 <input
                   type="password"
-                  required
-                  name="password"
+                  {...register("password", { required: true })}
                   placeholder="Enter Your Password"
                   className="input"
                 />
+                {errors.name && (
+                  <span className="text-red-400 text-xs font-semibold mt-2">
+                    This field is required
+                  </span>
+                )}
                 <label className="label">
                   <a
                     href="#"
@@ -92,21 +122,15 @@ const Login = () => {
               <div className="form-control">
                 <LoadCanvasTemplate />
                 <input
-                  ref={captchaRef}
+                  onBlur={handleVerify}
                   type="text"
                   placeholder="Enter the captcha above"
                   className="input mt-2"
                 />
-                <button
-                  onClick={handleVerify}
-                  className="btn btn-xs bg-primaryColor hover:bg-primaryColor border-0 w-20 mt-1 normal-case"
-                >
-                  Verify
-                </button>
               </div>
               <div className="form-control mt-6">
                 <input
-                  disabled={disabled}
+                  disabled={false}
                   type="submit"
                   value="Sign in"
                   className="btn btn-sm lg:btn-md bg-secondaryColor hover:bg-primaryColor normal-case border-0 text-white lg:text-xl shadow-lg"
@@ -122,7 +146,10 @@ const Login = () => {
                 <p className="my-4">Or sign in with</p>
                 <div className="text-4xl flex justify-center items-center gap-10">
                   <FaFacebook className="cursor-pointer" />
-                  <FaGoogle className="cursor-pointer" />
+                  <FaGoogle
+                    onClick={handleGoogleLogin}
+                    className="cursor-pointer"
+                  />
                   <FaGithub className="cursor-pointer" />
                 </div>
               </div>
