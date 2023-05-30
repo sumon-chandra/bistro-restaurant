@@ -14,12 +14,14 @@ import {
   MdBookmark,
   MdRestaurantMenu,
 } from "react-icons/md";
+import useCart from "../hooks/useCart";
 import DashboardNavItem from "../component/dashboard/DashboardNavItem";
 
 const Dashboard = () => {
   const isAdmin = false;
+  const [cart] = useCart();
   return (
-    <div className="drawer drawer-mobile">
+    <div className="drawer drawer-mobile font-inter">
       <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* <!-- Page content here --> */}
@@ -36,7 +38,7 @@ const Dashboard = () => {
       <div className="drawer-side">
         <label htmlFor="cart-drawer" className="drawer-overlay"></label>
 
-        <ul className="menu p-4 lg:w-64 w-[40%] lg:gap-y-6 gap-y-3 bg-primaryColor content-start dashboard-navbar relative">
+        <ul className="menu p-4 lg:w-64 w-[40%] gap-y-6 bg-primaryColor content-start dashboard-navbar relative">
           {/* <!-- Sidebar content here --> */}
           <Link
             to="/dashboard"
@@ -80,9 +82,15 @@ const Dashboard = () => {
               <DashboardNavItem value="Reservation" to="/dashboard/reservation">
                 <MdCalendarMonth />
               </DashboardNavItem>
-              <DashboardNavItem value="My Cart" to="/dashboard/my-cart">
-                <MdShoppingCart />
-              </DashboardNavItem>
+              {
+                <DashboardNavItem
+                  totalCart={cart.length}
+                  value="My Cart"
+                  to="/dashboard/my-cart"
+                >
+                  <MdShoppingCart />
+                </DashboardNavItem>
+              }
               <DashboardNavItem value="Add Review" to="/dashboard/add-review">
                 <MdRateReview />
               </DashboardNavItem>
