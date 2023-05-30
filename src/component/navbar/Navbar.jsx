@@ -12,7 +12,7 @@ const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
   const [cart] = useCart();
 
-  const isAdmin = false;
+  const isAdmin = true;
 
   const handleLogout = () => {
     logoutUser().then(() => {

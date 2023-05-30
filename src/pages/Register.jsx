@@ -20,12 +20,27 @@ const Register = () => {
 
   // !! Handle Sign in
   const handleRegister = (data) => {
+    setError("");
     const email = data.email;
     const password = data.password;
     createNewUser(email, password)
       .then(() => {
-        userInfo(data.name);
-        navigate("/");
+        userInfo(data.name).then(() => {
+          const user = { name: data.name, email: email };
+          fetch("https://bistro-boss.vercel.app/users", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(user),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                navigate("/");
+              }
+            });
+        });
       })
       .catch((err) => setError(err.message));
   };
@@ -33,8 +48,20 @@ const Register = () => {
   // !!! Handle google sign in
   const handleGoogleSignIn = () => {
     signInWithGoogle()
-      .then(() => {
-        navigate("/");
+      .then((result) => {
+        const loggedUser = result.user;
+        const user = { name: loggedUser.displayName, email: loggedUser.email };
+        fetch("https://bistro-boss.vercel.app/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then(() => {
+            navigate("/");
+          });
       })
       .catch((err) => setError(err.message));
   };
@@ -122,6 +149,9 @@ const Register = () => {
                   </span>
                 )}
               </div>
+              {error && (
+                <span className="text-xs text-red-500 font-bold">{error}</span>
+              )}
               <div className="form-control mt-6">
                 <input
                   type="submit"

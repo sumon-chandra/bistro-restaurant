@@ -9,7 +9,7 @@ const useCart = () => {
     queryKey: ["cart", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/carts?email=${user?.email}`
+        `https://bistro-boss.vercel.app/carts?email=${user?.email}`
       );
       return res.json();
     },

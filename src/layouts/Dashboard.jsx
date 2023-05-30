@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet, useLocation } from "react-router-dom";
 import {
   MdHomeFilled,
   MdRestaurant,
@@ -16,11 +16,22 @@ import {
 } from "react-icons/md";
 import useCart from "../hooks/useCart";
 import DashboardNavItem from "../component/dashboard/DashboardNavItem";
+import { useContext } from "react";
+import { AuthContext } from "../context-provider/AuthProvider";
 
 const Dashboard = () => {
-  const isAdmin = false;
+  const { user, loading } = useContext(AuthContext);
+  const location = useLocation();
   const [cart] = useCart();
-  return (
+  const isAdmin = true;
+  if (loading) {
+    return (
+      <div className="w-screen min-h-screen flex justify-center items-center">
+        Loading...
+      </div>
+    );
+  }
+  return user ? (
     <div className="drawer drawer-mobile font-inter">
       <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
@@ -38,11 +49,11 @@ const Dashboard = () => {
       <div className="drawer-side">
         <label htmlFor="cart-drawer" className="drawer-overlay"></label>
 
-        <ul className="menu p-4 lg:w-64 w-[40%] gap-y-6 bg-primaryColor content-start dashboard-navbar relative">
+        <ul className="menu font-cinzel p-4 lg:w-64 w-[40%] gap-y-6 bg-primaryColor content-start dashboard-navbar relative">
           {/* <!-- Sidebar content here --> */}
           <Link
             to="/dashboard"
-            className="lg:text-2xl flex-col lg:my-6 font-cinzel font-black uppercase select-none p-0 bg-transparent"
+            className="lg:text-2xl flex-col lg:my-6 font-black uppercase select-none p-0 bg-transparent"
           >
             <p>bistro boss</p>
             <p className="font-[300] lg:tracking-[0.4rem] text-xs tracking-[0.26rem] lg:text-lg">
@@ -115,6 +126,8 @@ const Dashboard = () => {
         </ul>
       </div>
     </div>
+  ) : (
+    <Navigate to="/login" state={{ from: location }} replace={true} />
   );
 };
 

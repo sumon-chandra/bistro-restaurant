@@ -46,8 +46,20 @@ const Login = () => {
 
   // !! Login with Google
   const handleGoogleLogin = () => {
-    signInWithGoogle().then(() => {
-      navigate(from);
+    signInWithGoogle().then((result) => {
+      const loggedUser = result.user;
+      const user = { name: loggedUser.displayName, email: loggedUser.email };
+      fetch("https://bistro-boss.vercel.app/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          navigate(from);
+        });
     });
   };
 

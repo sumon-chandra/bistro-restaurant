@@ -16,7 +16,7 @@ const MyCart = () => {
           <SectionHead heading="Look at your items!" subHeading="My cart" />
         </div>
         <div className="w-full">
-          <div className="font-cinzel lg:text-2xl text-xs font-bold flex justify-between items-center p-3">
+          <div className="uppercase font-cinzel lg:text-2xl text-xs font-bold flex justify-between items-center p-3">
             <h4>
               Total Orders: {cart.length < 9 ? `0${cart.length}` : cart.length}
             </h4>
@@ -24,7 +24,7 @@ const MyCart = () => {
               Total Price: $
               {cart.reduce((acc, item) => acc + item.price, 0).toFixed(2)}
             </h4>
-            <button className="uppercase border-b-2 bg-slate-200 text-primaryColor border-primaryColor py-2 px-4 font-inter font-semibold rounded-md hover:text-secondaryColor hover:border-secondaryColor">
+            <button className="border-b-2 bg-slate-200 text-primaryColor border-primaryColor py-2 px-4 font-inter font-semibold rounded-md hover:text-secondaryColor hover:border-secondaryColor uppercase">
               Pay
             </button>
           </div>
