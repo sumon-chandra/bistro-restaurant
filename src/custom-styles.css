@@ -52,3 +52,8 @@
   color: #d1a054;
   outline: 0 !important;
 }
+
+/* !!!!!!! Dashboard Navbar !!!!!!!! */
+.dashboard-navbar > a.active{
+  color: white;
+}

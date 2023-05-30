@@ -11,7 +11,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { user, logoutUser } = useContext(AuthContext);
   const [cart] = useCart();
-  console.log(cart);
 
   const handleLogout = () => {
     logoutUser().then(() => {
@@ -50,7 +49,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav className="navbar bg-[#15151580] fixed top-0 py-2 lg:px-12 left-0  z-40">
+    <nav className="navbar bg-gradient-to-b from-black to-[#15151500] fixed top-0 py-2 lg:px-12 left-0  z-40">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className=" lg:hidden">
@@ -68,7 +67,7 @@ const Navbar = () => {
           className="lg:text-2xl lg:ml-0 ml-4 font-cinzel font-black uppercase text-white select-none"
         >
           <p>bistro boss</p>{" "}
-          <p className="font-[300] lg:tracking-[0.3rem] lg:text-lg">
+          <p className="font-[300] lg:tracking-[0.4rem] lg:text-lg">
             restaurant
           </p>
         </Link>
@@ -77,7 +76,7 @@ const Navbar = () => {
         <div className="hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
-        <div className="flex items center">
+        <div className="flex items-center">
           <NavLink
             to="/dashboard/my-cart"
             className="indicator mr-4 hover:text-[#EEFF25]"
@@ -98,10 +97,10 @@ const Navbar = () => {
             <NavItem value="Login" to="/login" />
           )}
           {user?.photoURL ? (
-            <button className="btn rounded-full">
+            <button className="btn btn-ghost rounded-full">
               <img
                 src={user.photoURL}
-                className="w-12 h-10 rounded-full"
+                className="w-10 h-10 rounded-full"
                 alt="user photo"
               />{" "}
             </button>
