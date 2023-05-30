@@ -9,7 +9,12 @@ const DashboardNavItem = ({ value, to, children, totalCart }) => {
     >
       <span>{children}</span>
       <span>{value}</span>
-      {totalCart && <span className=""> ({totalCart})</span>}
+      {totalCart && (
+        <span className="">
+          {" "}
+          ({totalCart < 9 ? `0${totalCart}` : totalCart})
+        </span>
+      )}
     </NavLink>
   );
 };
