@@ -12,6 +12,8 @@ const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
   const [cart] = useCart();
 
+  const isAdmin = false;
+
   const handleLogout = () => {
     logoutUser().then(() => {
       Swal.fire({
@@ -38,7 +40,10 @@ const Navbar = () => {
         <NavItem value="Contact us" to="/contact-us" />
       </li>
       <li>
-        <NavItem value="Dashboard" to="/dashboard" />
+        <NavItem
+          value="Dashboard"
+          to={`dashboard/${isAdmin ? "admin" : "user"}`}
+        />
       </li>
       <li>
         <NavItem value="Our menu" to="/menu" />

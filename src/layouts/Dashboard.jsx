@@ -20,19 +20,21 @@ const Dashboard = () => {
   const isAdmin = false;
   return (
     <div className="drawer drawer-mobile">
-      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+      <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* <!-- Page content here --> */}
-        <Outlet />
+        <div className="z-0 lg:mt-0 mt-10">
+          <Outlet />
+        </div>
         <label
-          htmlFor="my-drawer-2"
-          className="drawer-button lg:hidden absolute top-4 left-4 "
+          htmlFor="cart-drawer"
+          className="drawer-button lg:hidden z-10 absolute top-0 left-0 right-0 ps-3 text-white bg-primaryColor"
         >
           <MdMenu className="text-3xl hover:bg-gray-200 rounded-lg" />
         </label>
       </div>
       <div className="drawer-side">
-        <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+        <label htmlFor="cart-drawer" className="drawer-overlay"></label>
 
         <ul className="menu p-4 lg:w-64 w-[40%] lg:gap-y-6 gap-y-3 bg-primaryColor content-start dashboard-navbar relative">
           {/* <!-- Sidebar content here --> */}
@@ -40,7 +42,7 @@ const Dashboard = () => {
             to="/dashboard"
             className="lg:text-2xl flex-col lg:my-6 font-cinzel font-black uppercase select-none p-0 bg-transparent"
           >
-            <p>bistro boss</p>{" "}
+            <p>bistro boss</p>
             <p className="font-[300] lg:tracking-[0.4rem] text-xs tracking-[0.26rem] lg:text-lg">
               restaurant
             </p>
@@ -72,7 +74,7 @@ const Dashboard = () => {
             </>
           ) : (
             <>
-              <DashboardNavItem value="User Home" to="/dashboard/user-home">
+              <DashboardNavItem value="User Home" to="/dashboard/user">
                 <MdHomeFilled />
               </DashboardNavItem>
               <DashboardNavItem value="Reservation" to="/dashboard/reservation">
