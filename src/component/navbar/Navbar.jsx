@@ -1,15 +1,14 @@
-import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FiMenu, FiShoppingCart } from "react-icons/fi";
 import Swal from "sweetalert2";
 import { FaRegUserCircle } from "react-icons/fa";
 import NavItem from "./NavItem";
-import { AuthContext } from "../../context-provider/AuthProvider";
 import useCart from "../../hooks/useCart";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { user, logoutUser } = useContext(AuthContext);
+  const { user, logoutUser } = useAuth();
   const [cart] = useCart();
 
   const isAdmin = true;

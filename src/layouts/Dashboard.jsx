@@ -26,13 +26,15 @@ import DashboardNavItem from "../component/dashboard/DashboardNavItem";
 import { useContext } from "react";
 import { AuthContext } from "../context-provider/AuthProvider";
 import Swal from "sweetalert2";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const { user, loading, logoutUser } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [cart] = useCart();
-  const isAdmin = true;
+  // const isAdmin = true;
+  const [isAdmin] = useAdmin();
   if (loading) {
     return (
       <div className="w-screen min-h-screen flex justify-center items-center">

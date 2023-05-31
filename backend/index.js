@@ -8,24 +8,24 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
 const verifyJWT = (req, res, next) => {
   const authorization = req.headers.authorization;
+  console.log(req.headers);
   if (!authorization) {
     return res
       .status(401)
       .send({ error: true, message: "Unauthorized access." });
   }
   const token = authorization.split(" ")[1];
-  console.log(token);
 
   jwt.verify(token, process.env.USER_SECRET_TOKEN, (err, decoded) => {
     if (err) {
       return res
         .status(401)
-        .send({ error: true, message: "Unauthorized access." });
+        .send({ error: true, message: "Unauthorized access 2." });
     }
     req.decoded = decoded;
-    // console.log(req);
     next();
   });
 };
@@ -55,7 +55,6 @@ async function run() {
     // JWT Authorization
     app.post("/jwt", (req, res) => {
       const user = req.body;
-      console.log("hello", user);
       const token = jwt.sign(user, process.env.USER_SECRET_TOKEN, {
         expiresIn: "1h",
       });
@@ -63,7 +62,7 @@ async function run() {
     });
 
     // Users collection
-    app.get("/users", async (req, res) => {
+    app.get("/users", verifyJWT, async (req, res) => {
       const users = await usersCollection.find().toArray();
       res.send(users);
     });
@@ -94,6 +93,14 @@ async function run() {
       const result = await usersCollection.deleteOne(query);
       res.send(result);
     });
+    app.get("/users/admin/:email", verifyJWT, async (req, res) => {
+      const email = req.params.email;
+      if (req.decoded.email !== email) return res.send({ admin: false });
+      const filter = { email };
+      const user = await usersCollection.findOne(filter);
+      const result = { admin: user?.rule === "admin" };
+      res.send(result);
+    });
 
     // Get all menu
     app.get("/menu", async (req, res) => {
@@ -112,14 +119,12 @@ async function run() {
       const email = req.query.email;
       if (!email) return res.send([]);
       const decodedEmail = req.decoded;
-      console.log("from 113:", decodedEmail);
       if (req.decoded.email !== email)
         return res
           .status(401)
           .send({ error: true, message: "Forbidden access token" });
       const query = { email: email };
       const result = await cartCollection.find(query).toArray();
-      // console.log(result);
       res.send(result);
     });
 

@@ -1,11 +1,9 @@
-import { useContext } from "react";
-import { AuthContext } from "./../context-provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
+import useAuth from "./useAuth";
 
 const useCart = () => {
-  const { user, loading } = useContext(AuthContext);
-  console.log(user);
+  const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
   // const token = localStorage.getItem("JWT");
   const { refetch, data: cart = [] } = useQuery({

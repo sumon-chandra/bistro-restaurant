@@ -2,12 +2,19 @@ import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import AllUsersTable from "../../../component/dashboard/admin/AllUsersTable";
 import SectionHead from "../../../component/sections/SectionHead";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
-  const { data: users = [], refresh } = useQuery(["users"], async () => {
-    const res = await fetch("http://localhost:5000/users");
-    return res.json();
+  const [axiosSecure] = useAxiosSecure();
+  const { data: users = [], refetch } = useQuery({
+    queryKey: ["users"],
+    enabled: !!localStorage.getItem("JWT"),
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users");
+      return res.data;
+    },
   });
+  console.log("Users from all user", users);
   return (
     <>
       <Helmet>
