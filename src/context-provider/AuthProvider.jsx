@@ -52,9 +52,9 @@ const AuthProvider = ({ children }) => {
   };
 
   // Load JWT info
-  const loadJWT = () => {
+  const loadJWT = (user) => {
     axios
-      .post("https://bistro-boss.vercel.app/jwt", { email: user.email })
+      .post("http://localhost:5000/jwt", { email: user.email })
       .then(({ data }) => {
         const token = data.token;
         localStorage.setItem("JWT", token);
@@ -65,7 +65,7 @@ const AuthProvider = ({ children }) => {
       userInfo();
       setUser(currentUser);
       if (currentUser) {
-        loadJWT();
+        loadJWT(currentUser);
       } else {
         localStorage.removeItem("JWT");
       }

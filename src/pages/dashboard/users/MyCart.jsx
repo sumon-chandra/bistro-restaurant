@@ -5,7 +5,6 @@ import MyCartTable from "../../../component/dashboard/users/MyCartTable";
 
 const MyCart = () => {
   const [cart] = useCart();
-
   return (
     <>
       <Helmet>
@@ -22,7 +21,7 @@ const MyCart = () => {
             </h4>
             <h4>
               Total Price: $
-              {cart.reduce((acc, item) => acc + item.price, 0).toFixed(2)}
+              {cart?.reduce((acc, item) => acc + item.price, 0).toFixed(2)}
             </h4>
             <button className="border-b-2 bg-slate-200 text-primaryColor border-primaryColor py-2 px-4 font-inter font-semibold rounded-md hover:text-secondaryColor hover:border-secondaryColor uppercase">
               Pay

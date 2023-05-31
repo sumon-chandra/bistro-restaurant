@@ -49,7 +49,7 @@ const Login = () => {
     signInWithGoogle().then((result) => {
       const loggedUser = result.user;
       const user = { name: loggedUser.displayName, email: loggedUser.email };
-      fetch("https://bistro-boss.vercel.app/users", {
+      fetch("http://localhost:5000/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

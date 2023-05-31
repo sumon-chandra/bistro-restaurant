@@ -27,7 +27,7 @@ const Register = () => {
       .then(() => {
         userInfo(data.name).then(() => {
           const user = { name: data.name, email: email };
-          fetch("https://bistro-boss.vercel.app/users", {
+          fetch("http://localhost:5000/users", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const Register = () => {
       .then((result) => {
         const loggedUser = result.user;
         const user = { name: loggedUser.displayName, email: loggedUser.email };
-        fetch("https://bistro-boss.vercel.app/users", {
+        fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

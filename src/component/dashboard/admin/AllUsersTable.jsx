@@ -6,7 +6,7 @@ import useUser from "../../../hooks/useUser";
 const AllUsersTable = ({ user, index }) => {
   const [, refetch] = useUser();
   const handleMakeAdmin = (user) => {
-    fetch(`https://bistro-boss.vercel.app/users/admin/${user.email}`, {
+    fetch(`http://localhost:5000/users/admin/${user.email}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -17,12 +17,6 @@ const AllUsersTable = ({ user, index }) => {
       });
   };
   const handleDelete = (id) => {
-    // fetch(`https://bistro-boss.vercel.app/users/${id}`, {
-    //   method: "DELETE",
-    // }).then(() => {
-    //   alert("User deleted successfully");
-    //   refetch();
-    // });
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -34,7 +28,7 @@ const AllUsersTable = ({ user, index }) => {
       className: "cart-swal",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://bistro-boss.vercel.app/users/${id}`, {
+        fetch(`http://localhost:5000/users/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
