@@ -14,7 +14,7 @@ const AllUsers = () => {
       return res.data;
     },
   });
-  console.log("Users from all user", users);
+  // console.log("Users from all user", users);
   return (
     <>
       <Helmet>

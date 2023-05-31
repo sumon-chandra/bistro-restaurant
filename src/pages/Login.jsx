@@ -12,8 +12,10 @@ import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
 import bg from "../assets/others/pattern.png";
 import loginImg from "../assets/others/register.png";
 import { AuthContext } from "../context-provider/AuthProvider";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 const Login = () => {
   const { loginUser, signInWithGoogle } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure();
   const [disabled, setDisabled] = useState(true);
   const {
     register,

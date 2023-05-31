@@ -7,8 +7,8 @@ const useUser = () => {
     queryKey: ["users"],
     enabled: !!localStorage.getItem("JWT"),
     queryFn: async () => {
-      const res = await axiosSecure.get(`http://localhost:5000/users`);
-      return res.json();
+      const res = await axiosSecure.get(`/users`);
+      return res.data;
     },
   });
   return [users, refetch];

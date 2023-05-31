@@ -13,6 +13,7 @@ const AllUsersTable = ({ user, index }) => {
       .then((data) => {
         if (data.modifiedCount) {
           alert(`${user.name} is new admin!`);
+          refetch();
         }
       });
   };

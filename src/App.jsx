@@ -23,6 +23,7 @@ import AddReview from "./pages/dashboard/users/AddReview";
 import MyBookings from "./pages/dashboard/users/MyBookings";
 import AdminHome from "./pages/dashboard/Admin/AdminHome";
 import AddItems from "./pages/dashboard/Admin/AddItems";
+import AdminRoute from "./routes/AdminRoute";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -36,11 +37,13 @@ const App = () => {
           <Route path="shop/:category" element={<Shop />} />
         </Route>
         <Route path="dashboard" element={<Dashboard />}>
-          <Route path="admin" element={<AdminHome />} />
-          <Route path="manage-items" element={<ManageItems />} />
-          <Route path="add-items" element={<AddItems />} />
-          <Route path="manage-bookings" element={<ManageBookings />} />
-          <Route path="all-users" element={<AllUsers />} />
+          <Route element={<AdminRoute />}>
+            <Route path="admin" element={<AdminHome />} />
+            <Route path="manage-items" element={<ManageItems />} />
+            <Route path="add-items" element={<AddItems />} />
+            <Route path="manage-bookings" element={<ManageBookings />} />
+            <Route path="all-users" element={<AllUsers />} />
+          </Route>
           <Route path="user" element={<UserHome />} />
           <Route path="reservation" element={<Reservation />} />
           <Route path="my-cart" element={<MyCart />} />

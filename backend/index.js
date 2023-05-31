@@ -60,6 +60,15 @@ async function run() {
       });
       res.send({ token });
     });
+    const verifyAdmin = async (req, res, next) => {
+      const email = req.decoded.email;
+      const query = { email };
+      const user = await usersCollection.findOne(query);
+      if (user?.rule !== "admin") {
+        return res.status(401).send({ message: "Unauthorized access" });
+      }
+      next();
+    };
 
     // Users collection
     app.get("/users", verifyJWT, async (req, res) => {
@@ -107,6 +116,11 @@ async function run() {
       const menu = await menuCollection.find().toArray();
       res.send(menu);
     });
+    app.post("/menu", verifyJWT, verifyAdmin, async (req, res) => {
+      const item = req.body;
+      const result = await menuCollection.insertOne(item);
+      res.send(result);
+    });
 
     // Get all reviews
     app.get("/reviews", async (req, res) => {
@@ -118,7 +132,6 @@ async function run() {
     app.get("/carts", verifyJWT, async (req, res) => {
       const email = req.query.email;
       if (!email) return res.send([]);
-      const decodedEmail = req.decoded;
       if (req.decoded.email !== email)
         return res
           .status(401)
