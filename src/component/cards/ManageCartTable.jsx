@@ -1,10 +1,14 @@
 import React from "react";
-import useCart from "../../../hooks/useCart";
-import { FaTrash } from "react-icons/fa";
+import useCart from "../../hooks/useCart";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useMenu from "../../hooks/useMenu";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const MyCartTable = ({ item, index }) => {
-  const [, refetch] = useCart();
+const ManageCartTable = ({ item, index }) => {
+  const [axiosSecure] = useAxiosSecure();
+  const { refetch } = useMenu();
+
   // Handle delete item
   const handleDelete = (id) => {
     Swal.fire({
@@ -18,20 +22,21 @@ const MyCartTable = ({ item, index }) => {
       className: "cart-swal",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/carts/${id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.deletedCount > 0) {
-              Swal.fire("Deleted!", "Your file has been deleted.", "success");
-              refetch();
-            } else {
-              Swal.fire("Failed!", "Failed to delete!.", "danger");
-            }
-          });
+        axiosSecure.delete(`/menu/${id}`).then(({ data }) => {
+          if (data.deletedCount > 0) {
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            refetch();
+          } else {
+            Swal.fire("Failed!", "Failed to delete!.", "error");
+          }
+        });
       }
     });
+  };
+
+  //   Handle Edit item
+  const handleEdit = (item) => {
+    console.log(item);
   };
   return (
     <tr className="font-bold">
@@ -49,6 +54,12 @@ const MyCartTable = ({ item, index }) => {
       </td>
       <th>
         <button
+          onClick={() => handleEdit(item)}
+          className="btn btn-ghost bg-primaryColor btn-xs w-10 h-10 text-xl text-white mr-6 hover:bg-secondaryColor"
+        >
+          <FaEdit />
+        </button>
+        <button
           onClick={() => handleDelete(item._id)}
           className="btn btn-ghost bg-red-600 btn-xs w-10 h-10 text-xl text-white hover:bg-red-500"
         >
@@ -59,4 +70,4 @@ const MyCartTable = ({ item, index }) => {
   );
 };
 
-export default MyCartTable;
+export default ManageCartTable;

@@ -1,6 +1,6 @@
 import SectionHead from "../sections/SectionHead";
 import featureImage from "../../assets/home/slide1.jpg";
-import FoodCard from "../FoodCard";
+import FoodCard from "../cards/FoodCard";
 
 const ChefRecommends = () => {
   return (

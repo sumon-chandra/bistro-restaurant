@@ -1,4 +1,4 @@
-import FoodCard from "../FoodCard";
+import FoodCard from "../cards/FoodCard";
 
 const FoodCategory = ({ items }) => {
   return (

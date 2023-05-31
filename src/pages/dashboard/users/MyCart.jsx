@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import useCart from "../../../hooks/useCart";
 import SectionHead from "./../../../component/sections/SectionHead";
-import MyCartTable from "../../../component/dashboard/users/MyCartTable";
+import MyCartTable from "../../../component/cards/MyCartTable";
 
 const MyCart = () => {
   const [cart] = useCart();

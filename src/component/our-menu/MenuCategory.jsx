@@ -5,11 +5,8 @@ const MenuCategory = ({ items }) => {
     <>
       <div className="lg:grid grid-cols-2 gap-8 relative pb-24 mt-10">
         {items.map((menuItem) => (
-          <>
-            <div
-              key={menuItem._id}
-              className="flex items-start justify-between mt-4 lg:mt-0"
-            >
+          <div key={menuItem._id}>
+            <div className="flex items-start justify-between mt-4 lg:mt-0">
               <figure>
                 <img
                   src={menuItem.image}
@@ -33,7 +30,7 @@ const MenuCategory = ({ items }) => {
                 Order your favorite food
               </Link>
             </div>
-          </>
+          </div>
         ))}
       </div>
     </>
