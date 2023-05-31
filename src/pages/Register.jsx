@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
@@ -35,10 +35,8 @@ const Register = () => {
             body: JSON.stringify(user),
           })
             .then((res) => res.json())
-            .then((data) => {
-              if (data.insertedId) {
-                navigate("/");
-              }
+            .then(() => {
+              navigate("/");
             });
         });
       })

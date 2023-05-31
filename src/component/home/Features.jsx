@@ -12,7 +12,7 @@ const Features = () => {
           heading={"From our menu"}
           features={true}
         />
-        <div className="lg:flex justify-center gap-20 items-center text-white lg:p-10 pt-10">
+        <div className="lg:flex justify-center gap-20 items-center text-white lg:p-10 py-10">
           <div>
             <img src={featureImg} alt="" className="lg:w-full lg:e-full" />
           </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import useCart from "../../../hooks/useCart";
 import { FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const MyCartTable = ({ item, index }) => {
   const [, refetch] = useCart();

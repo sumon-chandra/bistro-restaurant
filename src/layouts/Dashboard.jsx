@@ -1,4 +1,10 @@
-import { Link, Navigate, Outlet, useLocation } from "react-router-dom";
+import {
+  Link,
+  Navigate,
+  Outlet,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import {
   MdHomeFilled,
   MdRestaurant,
@@ -13,15 +19,18 @@ import {
   MdRateReview,
   MdBookmark,
   MdRestaurantMenu,
+  MdLogout,
 } from "react-icons/md";
 import useCart from "../hooks/useCart";
 import DashboardNavItem from "../component/dashboard/DashboardNavItem";
 import { useContext } from "react";
 import { AuthContext } from "../context-provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Dashboard = () => {
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading, logoutUser } = useContext(AuthContext);
   const location = useLocation();
+  const navigate = useNavigate();
   const [cart] = useCart();
   const isAdmin = true;
   if (loading) {
@@ -31,6 +40,25 @@ const Dashboard = () => {
       </div>
     );
   }
+
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#D1A054",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Log out",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logoutUser().then(() => {
+          Swal.fire("", "You are logged out.", "success");
+          navigate("/login");
+        });
+      }
+    });
+  };
+
   return user ? (
     <div className="drawer drawer-mobile font-inter">
       <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
@@ -49,7 +77,7 @@ const Dashboard = () => {
       <div className="drawer-side">
         <label htmlFor="cart-drawer" className="drawer-overlay"></label>
 
-        <ul className="menu font-cinzel p-4 lg:w-64 w-[40%] gap-y-6 bg-primaryColor content-start dashboard-navbar relative">
+        <ul className="menu font-cinzel p-4 lg:w-64 w-[70%] gap-y-6 bg-primaryColor content-start dashboard-navbar relative">
           {/* <!-- Sidebar content here --> */}
           <Link
             to="/dashboard"
@@ -123,6 +151,12 @@ const Dashboard = () => {
           <DashboardNavItem value="Contact" to="/contact">
             <MdEmail />
           </DashboardNavItem>
+          <button
+            onClick={handleLogout}
+            className="flex uppercase items-center gap-2 text-[16px] font-semibold"
+          >
+            <MdLogout /> Logout
+          </button>
         </ul>
       </div>
     </div>

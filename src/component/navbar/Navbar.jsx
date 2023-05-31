@@ -15,20 +15,20 @@ const Navbar = () => {
   const isAdmin = true;
 
   const handleLogout = () => {
-    logoutUser().then(() => {
-      Swal.fire({
-        title: "Are you sure?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#D1A054",
-        cancelButtonColor: "#ffffff",
-        confirmButtonText: "Log out",
-      }).then((result) => {
-        if (result.isConfirmed) {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#D1A054",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Log out",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logoutUser().then(() => {
           Swal.fire("", "You are logged out.", "success");
           navigate("/login");
-        }
-      });
+        });
+      }
     });
   };
   const navOptions = (

@@ -10,6 +10,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "./../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 
@@ -45,14 +46,29 @@ const AuthProvider = ({ children }) => {
 
   // Get user info
   const userInfo = (name) => {
-    updateProfile(auth.currentUser, {
+    return updateProfile(auth.currentUser, {
       displayName: name,
     });
+  };
+
+  // Load JWT info
+  const loadJWT = () => {
+    axios
+      .post("https://bistro-boss.vercel.app/jwt", { email: user.email })
+      .then(({ data }) => {
+        const token = data.token;
+        localStorage.setItem("JWT", token);
+      });
   };
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       userInfo();
       setUser(currentUser);
+      if (currentUser) {
+        loadJWT();
+      } else {
+        localStorage.removeItem("JWT");
+      }
       setLoading(false);
     });
     return () => unSubscribe();
