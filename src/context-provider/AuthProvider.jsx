@@ -41,6 +41,7 @@ const AuthProvider = ({ children }) => {
   // Logout user
   const logoutUser = () => {
     setLoading(true);
+    sessionStorage.clear();
     return signOut(auth);
   };
 
@@ -82,6 +83,7 @@ const AuthProvider = ({ children }) => {
     logoutUser,
     userInfo,
     signInWithGoogle,
+    loadJWT,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

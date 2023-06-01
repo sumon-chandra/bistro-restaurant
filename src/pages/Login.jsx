@@ -12,10 +12,8 @@ import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
 import bg from "../assets/others/pattern.png";
 import loginImg from "../assets/others/register.png";
 import { AuthContext } from "../context-provider/AuthProvider";
-import useAxiosSecure from "../hooks/useAxiosSecure";
 const Login = () => {
-  const { loginUser, signInWithGoogle } = useContext(AuthContext);
-  const [axiosSecure] = useAxiosSecure();
+  const { loginUser, signInWithGoogle, loadJWT } = useContext(AuthContext);
   const [disabled, setDisabled] = useState(true);
   const {
     register,
@@ -40,7 +38,8 @@ const Login = () => {
 
   // !! Handle Sign in
   const handleLogin = (data) => {
-    loginUser(data.email, data.password).then(() => {
+    loginUser(data.email, data.password).then((res) => {
+      loadJWT(res.user);
       reset();
       navigate(from);
     });
@@ -60,6 +59,7 @@ const Login = () => {
       })
         .then((res) => res.json())
         .then(() => {
+          loadJWT(loggedUser);
           navigate(from);
         });
     });

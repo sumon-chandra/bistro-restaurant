@@ -34,8 +34,8 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [cart] = useCart();
   // const isAdmin = true;
-  const [isAdmin] = useAdmin();
-  if (loading) {
+  const [isAdmin, isAdminLoading] = useAdmin();
+  if (loading || isAdminLoading) {
     return (
       <div className="w-screen min-h-screen flex justify-center items-center">
         Loading...

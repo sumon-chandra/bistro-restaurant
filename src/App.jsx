@@ -13,7 +13,6 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Menu from "./pages/Menu";
 import Shop from "./pages/Shop";
-import ManageItems from "./pages/dashboard/admin/ManageItems";
 import ManageBookings from "./pages/dashboard/admin/ManageBookings";
 import AllUsers from "./pages/dashboard/admin/AllUsers";
 import UserHome from "./pages/dashboard/users/UserHome";
@@ -23,7 +22,9 @@ import AddReview from "./pages/dashboard/users/AddReview";
 import MyBookings from "./pages/dashboard/users/MyBookings";
 import AdminHome from "./pages/dashboard/Admin/AdminHome";
 import AddItems from "./pages/dashboard/Admin/AddItems";
+import ManageItems from "./pages/dashboard/Admin/ManageItems";
 import AdminRoute from "./routes/AdminRoute";
+import Contact from "./pages/Contact";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="menu" element={<Menu />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="shop/:category" element={<Shop />} />
         </Route>
         <Route path="dashboard" element={<Dashboard />}>

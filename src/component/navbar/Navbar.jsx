@@ -5,14 +5,14 @@ import { FaRegUserCircle } from "react-icons/fa";
 import NavItem from "./NavItem";
 import useCart from "../../hooks/useCart";
 import useAuth from "../../hooks/useAuth";
+import useAdmin from "./../../hooks/useAdmin";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { user, logoutUser } = useAuth();
   const [cart] = useCart();
 
-  const isAdmin = true;
-
+  const [isAdmin, isAdminLoading] = useAdmin();
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -36,7 +36,7 @@ const Navbar = () => {
         <NavItem value="Home" to="/" />
       </li>
       <li>
-        <NavItem value="Contact us" to="/contact-us" />
+        <NavItem value="Contact us" to="/contact" />
       </li>
       <li>
         <NavItem

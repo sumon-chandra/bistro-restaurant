@@ -5,7 +5,6 @@ import useAuth from "./useAuth";
 const useCart = () => {
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
-  // const token = localStorage.getItem("JWT");
   const { refetch, data: cart = [] } = useQuery({
     queryKey: ["carts", user?.email],
 
@@ -23,6 +22,9 @@ const useCart = () => {
 
     // !!!!!!!!! Uses advanced authentication mechanism using axios interceptor custom hook called axiosSecure
     queryFn: async () => {
+      if (!user) {
+        return [];
+      }
       const res = await axiosSecure(`/carts?email=${user?.email}`);
       return res.data;
     },

@@ -57,7 +57,7 @@ const AddItems = () => {
         </div>
         <form
           onSubmit={handleSubmit(handleAddFood)}
-          className="card-body font-inter lg:mt-20 bg-slate-300 mx-32 p-8 rounded-lg"
+          className="card-body font-inter lg:mt-20 mt-8 bg-slate-300 lg:mx-32 lg:p-8 rounded-lg"
         >
           <div className="form-control">
             <label className="label">
@@ -75,7 +75,7 @@ const AddItems = () => {
               </span>
             )}
           </div>
-          <div className="flex items-center gap-8 justify-between">
+          <div className="lg:flex items-center gap-8 justify-between">
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text font-bold text-xl">Category*</span>
