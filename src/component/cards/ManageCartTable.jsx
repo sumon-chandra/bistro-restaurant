@@ -42,7 +42,7 @@ const ManageCartTable = ({ item, index }) => {
     <tr className="font-bold">
       <th>{index + 1}</th>
       <td>
-        <div className="mask mask-squircle w-12 h-12">
+        <div className="mask mask-squircle lg:w-32 w-12">
           <img src={item.image} alt="Food image" />
         </div>
       </td>

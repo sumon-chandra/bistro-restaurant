@@ -7,24 +7,27 @@ import {
 // Layouts
 import RootLayout from "./layouts/RootLayout";
 import Dashboard from "./layouts/Dashboard";
-// Pages
+import AdminRoute from "./routes/AdminRoute";
+// Normal pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Menu from "./pages/Menu";
 import Shop from "./pages/Shop";
+import Contact from "./pages/Contact";
+// Admin pages
 import ManageBookings from "./pages/dashboard/admin/ManageBookings";
+import AdminHome from "./pages/dashboard/Admin/AdminHome";
+import AddItems from "./pages/dashboard/Admin/AddItems";
+import ManageItems from "./pages/dashboard/Admin/ManageItems";
 import AllUsers from "./pages/dashboard/admin/AllUsers";
+// User pages
 import UserHome from "./pages/dashboard/users/UserHome";
 import Reservation from "./pages/dashboard/users/Reservation";
 import MyCart from "./pages/dashboard/users/MyCart";
 import AddReview from "./pages/dashboard/users/AddReview";
 import MyBookings from "./pages/dashboard/users/MyBookings";
-import AdminHome from "./pages/dashboard/Admin/AdminHome";
-import AddItems from "./pages/dashboard/Admin/AddItems";
-import ManageItems from "./pages/dashboard/Admin/ManageItems";
-import AdminRoute from "./routes/AdminRoute";
-import Contact from "./pages/Contact";
+import Payment from "./pages/dashboard/users/payment/Payment";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -51,6 +54,7 @@ const App = () => {
           <Route path="my-cart" element={<MyCart />} />
           <Route path="add-review" element={<AddReview />} />
           <Route path="my-bookings" element={<MyBookings />} />
+          <Route path="payment" element={<Payment />} />
         </Route>
       </Route>
     )

@@ -81,15 +81,17 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="flex items-center">
-          <NavLink
-            to="/dashboard/my-cart"
-            className="indicator mr-4 hover:text-[#EEFF25]"
-          >
-            <FiShoppingCart className="text-2xl text-white" />
-            <span className="badge badge-sm bg-black border-0 indicator-item">
-              {cart.length}
-            </span>
-          </NavLink>
+          {!isAdmin && (
+            <NavLink
+              to="/dashboard/my-cart"
+              className="indicator mr-4 hover:text-[#EEFF25]"
+            >
+              <FiShoppingCart className="text-2xl text-white" />
+              <span className="badge badge-sm bg-primaryColor font-bold border-0 indicator-item">
+                {cart.length}
+              </span>
+            </NavLink>
+          )}
           {user ? (
             <button
               onClick={handleLogout}

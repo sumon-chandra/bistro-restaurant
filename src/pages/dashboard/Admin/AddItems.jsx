@@ -48,8 +48,8 @@ const AddItems = () => {
       <Helmet>
         <title>Add an item - Bistro Boss Restaurant</title>
       </Helmet>
-      <section>
-        <div className="mt-4 lg:mt-10">
+      <section className="add-items min-h-screen bg-[url('https://i.ibb.co/0FcLCLg/Charcoal-Smudge.png')] bg-no-repeat bg-cover bg-center">
+        <div className="pt-4 lg:pt-10">
           <SectionHead
             heading="Add Your favorite Food"
             subHeading="Add A Food"
@@ -57,7 +57,7 @@ const AddItems = () => {
         </div>
         <form
           onSubmit={handleSubmit(handleAddFood)}
-          className="card-body font-inter lg:mt-20 mt-8 bg-slate-300 lg:mx-32 lg:p-8 rounded-lg"
+          className="card-body font-inter mt-8 lg:mx-32 lg:p-8 rounded-lg glass"
         >
           <div className="form-control">
             <label className="label">
@@ -131,7 +131,7 @@ const AddItems = () => {
                 required: true,
               })}
               placeholder="Recipe Details"
-              className="input min-h-[200px]"
+              className="textarea textarea-bordered textarea-lg w-full"
             />
             {errors.price && (
               <span className="text-red-400 text-xs font-semibold mt-2">
@@ -150,7 +150,7 @@ const AddItems = () => {
             <input
               type="submit"
               value="Add Item"
-              className="btn btn-sm lg:btn-md bg-secondaryColor hover:bg-primaryColor normal-case border-0 text-white lg:text-xl shadow-lg"
+              className="btn lg:w-4/12 mx-auto w-full btn-sm lg:btn-md hover:bg-secondaryColor bg-primaryColor normal-case border-0 text-white lg:text-xl shadow-lg"
             />
           </div>
         </form>

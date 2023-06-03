@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context-provider/AuthProvider";
 import useCart from "../../hooks/useCart";
+import { useNavigate } from "react-router-dom";
 
 const FoodCard = ({ item }) => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [, refetch] = useCart();
   const handleAddToCart = (item) => {
     if (user && user.email) {
@@ -29,6 +31,8 @@ const FoodCard = ({ item }) => {
             alert("Add cart successfully !");
           }
         });
+    } else {
+      navigate("/login");
     }
   };
   return (

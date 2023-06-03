@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import useCart from "../../../hooks/useCart";
 import SectionHead from "./../../../component/sections/SectionHead";
 import MyCartTable from "../../../component/cards/MyCartTable";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
   const [cart] = useCart();
@@ -23,9 +24,12 @@ const MyCart = () => {
               Total Price: $
               {cart?.reduce((acc, item) => acc + item.price, 0).toFixed(2)}
             </h4>
-            <button className="border-b-2 bg-slate-200 text-primaryColor border-primaryColor py-2 px-4 font-inter font-semibold rounded-md hover:text-secondaryColor hover:border-secondaryColor uppercase">
+            <Link
+              to="/dashboard/payment"
+              className="border-b-2 bg-slate-200 text-primaryColor border-primaryColor py-2 px-4 font-inter font-semibold rounded-md hover:text-secondaryColor hover:border-secondaryColor uppercase"
+            >
               Pay
-            </button>
+            </Link>
           </div>
           <table className="table table-zebra overflow-x-auto w-full">
             <thead>
