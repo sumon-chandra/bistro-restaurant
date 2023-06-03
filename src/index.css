@@ -4,3 +4,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* !!!!!!!!!!! Custom CSS components !!!!!!!!!!!!!!! */
+
+@layer components {
+    .dashboard-card {
+        @apply px-6 py-10 rounded-lg w-full text-4xl font-black flex gap-4 items-start justify-center text-white
+    }
+    .dashboard-loading-card {
+        @apply text-center px-6 py-10 rounded-lg w-full text-2xl font-black text-white
+    }
+}

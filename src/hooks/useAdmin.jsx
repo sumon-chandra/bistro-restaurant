@@ -9,6 +9,7 @@ const useAdmin = () => {
   const token = localStorage.getItem("JWT");
   const { data: isAdmin, isLoading: isAdminLoading } = useQuery({
     queryKey: ["isAdmin", user?.email, token],
+    enabled: !loading,
     queryFn: async () => {
       if (!user || !token) {
         return false;
