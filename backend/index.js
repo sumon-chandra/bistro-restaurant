@@ -200,13 +200,57 @@ async function run() {
           },
         ])
         .toArray();
-      const revenue = revenueSum[0].totalAmount;
+      const revenue = revenueSum[0].totalAmount.toFixed(2);
       res.send({
         customers,
         products,
         orders,
         revenue,
       });
+    });
+    app.get("/order-stats", verifyJWT, verifyAdmin, async (req, res) => {
+      const pipeline = [
+        {
+          $addFields: {
+            menuItemsObjectIds: {
+              $map: {
+                input: "$menuItems",
+                as: "itemId",
+                in: { $toObjectId: "$$itemId" },
+              },
+            },
+          },
+        },
+        {
+          $lookup: {
+            from: "menu",
+            localField: "menuItemsObjectIds",
+            foreignField: "_id",
+            as: "menuItemsData",
+          },
+        },
+        {
+          $unwind: "$menuItemsData",
+        },
+        {
+          $group: {
+            _id: "$menuItemsData.category",
+            count: { $sum: 1 },
+            total: { $sum: "$menuItemsData.price" },
+          },
+        },
+        {
+          $project: {
+            category: "$_id",
+            count: 1,
+            total: { $round: ["$total", 2] },
+            _id: 0,
+          },
+        },
+      ];
+
+      const result = await paymentCollection.aggregate(pipeline).toArray();
+      res.send(result);
     });
 
     // Send a ping to confirm a successful connection

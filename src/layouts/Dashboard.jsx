@@ -27,6 +27,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context-provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAdmin from "../hooks/useAdmin";
+import AdminSpinner from "../spinners/AdminSpinner";
 
 const Dashboard = () => {
   const { user, loading, logoutUser } = useContext(AuthContext);
@@ -36,11 +37,7 @@ const Dashboard = () => {
   // const isAdmin = true;
   const [isAdmin, isAdminLoading] = useAdmin();
   if (loading || isAdminLoading) {
-    return (
-      <div className="w-screen min-h-screen flex justify-center items-center">
-        Loading...
-      </div>
-    );
+    return <AdminSpinner />;
   }
 
   const handleLogout = () => {
@@ -71,7 +68,7 @@ const Dashboard = () => {
         </div>
         <label
           htmlFor="cart-drawer"
-          className="drawer-button lg:hidden z-10 absolute top-0 left-0 right-0 ps-3 text-white bg-primaryColor"
+          className="drawer-button text-center w-14 rounded-md shadow-xl lg:hidden z-10 absolute top-1 left-1 right-0 ps-3 glass text-black"
         >
           <MdMenu className="text-3xl hover:bg-gray-200 rounded-lg" />
         </label>

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { GiWallet } from "react-icons/gi";
 import useAxiosSecure from "./../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import AdminChart from "../../../component/dashboard/admin/AdminChart";
 
 const AdminHome = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -69,6 +70,7 @@ const AdminHome = () => {
           </div>
         </section>
       )}
+      <AdminChart />
     </div>
   );
 };
