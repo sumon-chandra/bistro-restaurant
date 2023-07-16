@@ -13,6 +13,7 @@ const Navbar = () => {
   const [cart] = useCart();
 
   const [isAdmin, isAdminLoading] = useAdmin();
+  console.log(isAdmin);
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",

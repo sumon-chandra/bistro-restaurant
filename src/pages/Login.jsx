@@ -1,20 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  validateCaptcha,
-} from "react-simple-captcha";
 import { useForm } from "react-hook-form";
-
 import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
 import bg from "../assets/others/pattern.png";
 import loginImg from "../assets/others/register.png";
 import { AuthContext } from "../context-provider/AuthProvider";
 const Login = () => {
   const { loginUser, signInWithGoogle, loadJWT } = useContext(AuthContext);
-  const [disabled, setDisabled] = useState(true);
   const {
     register,
     handleSubmit,
@@ -24,18 +17,6 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-
-  // !! Verify that captcha
-  const handleVerify = (e) => {
-    if (validateCaptcha(e.target.value)) {
-      setDisabled(false);
-      e.target.value = "";
-    } else {
-      setDisabled(true);
-      e.target.value = "";
-    }
-  };
-
   // !! Handle Sign in
   const handleLogin = (data) => {
     loginUser(data.email, data.password).then((res) => {
@@ -50,7 +31,7 @@ const Login = () => {
     signInWithGoogle().then((result) => {
       const loggedUser = result.user;
       const user = { name: loggedUser.displayName, email: loggedUser.email };
-      fetch("http://localhost:5000/users", {
+      fetch("https://bistro-boss.vercel.app/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -67,7 +48,6 @@ const Login = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    loadCaptchaEnginge(4);
   }, []);
   return (
     <>
@@ -78,23 +58,26 @@ const Login = () => {
         style={{ backgroundImage: `url("${bg}")` }}
         className=" lg:pt-32 pt-24 pb-32"
       >
-        <div className="lg:w-1200 mx-auto px-4 lg:px-0 min-h-screen bg-transparent border rounded-xl shadow-2xl">
-          <div className="lg:flex justify-evenly items-center gap-x-10">
+        <div className="lg:w-1200 mx-auto px-4 lg:px-0 bg-transparent border rounded-xl shadow-2xl">
+          <div className="lg:flex justify-evenly items-center gap-14">
             <img
               src={loginImg}
               alt=""
               className="w-1/2 hidden lg:block bg-transparent"
             />
+            <div class="divider divider-horizontal lg:my-8"></div>
             <form
               onSubmit={handleSubmit(handleLogin)}
               className="card-body font-inter"
             >
               <div className="text-center">
-                <h4 className="text-3xl font-bold">Login</h4>
+                <h4 className="text-3xl text-primaryColor font-black ">
+                  Login
+                </h4>
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-bold text-xl">Email</span>
+                  <span className="label-text font-bold text-sm">Email</span>
                 </label>
                 <input
                   type="email"
@@ -111,7 +94,7 @@ const Login = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-bold text-xl">Password</span>
+                  <span className="label-text font-bold text-sm">Password</span>
                 </label>
                 <input
                   type="password"
@@ -134,37 +117,28 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control">
-                <LoadCanvasTemplate />
-                <input
-                  onBlur={handleVerify}
-                  type="text"
-                  placeholder="Enter the captcha above"
-                  className="input mt-2"
-                />
-              </div>
-              <div className="form-control mt-6">
                 <input
                   disabled={false}
                   type="submit"
-                  value="Sign in"
-                  className="btn btn-sm lg:btn-md bg-secondaryColor hover:bg-primaryColor normal-case border-0 text-white lg:text-xl shadow-lg"
+                  value="Login"
+                  className="btn btn-sm lg:w-1/2 mx-auto hover:bg-secondaryColor bg-primaryColor normal-case border-0 text-white shadow"
                 />
               </div>
               <div className="text-center text-primaryColor">
-                <p className="lg:text-xl font-semibold">
+                <p className="text-xs font-semibold">
                   New here?{" "}
-                  <Link to="/register" className="font-bold">
+                  <Link to="/register" className="font-black underline">
                     Create a new account
                   </Link>
                 </p>
-                <p className="my-4">Or sign in with</p>
-                <div className="text-4xl flex justify-center items-center gap-10">
-                  <FaFacebook className="cursor-pointer" />
-                  <FaGoogle
-                    onClick={handleGoogleLogin}
-                    className="cursor-pointer"
-                  />
-                  <FaGithub className="cursor-pointer" />
+                <div
+                  onClick={handleGoogleLogin}
+                  className="text-lg shadow flex justify-center items-center gap-3 mt-3 bg-white py-3 rounded-3xl cursor-pointer"
+                >
+                  <span className="text-sm font-bold">
+                    Continue with Google
+                  </span>
+                  <FaGoogle />
                 </div>
               </div>
             </form>

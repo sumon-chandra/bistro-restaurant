@@ -18,6 +18,7 @@ const useAdmin = () => {
         return true;
       }
       const res = await axiosSecure.get(`/users/admin/${user?.email}`);
+      console.log(res);
       sessionStorage.setItem("isAdmin", res.data.admin);
       return res.data.admin;
     },

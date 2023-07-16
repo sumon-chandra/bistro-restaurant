@@ -1,5 +1,6 @@
 import SectionHead from "../sections/SectionHead";
 import featureImg from "../../assets/home/featured.jpg";
+import { Link } from "react-router-dom";
 const Features = () => {
   return (
     <section
@@ -26,9 +27,12 @@ const Features = () => {
               consequuntur omnis ullam maxime tenetur.
             </p>
             <div className="text-center lg:text-left">
-              <button className="uppercase border-b-2 bg-transparent text-white border-white py-2 px-4 font-inter font-semibold mt-6 rounded-md hover:text-gray-300 hover:border-gray-300">
-                Add to Card
-              </button>
+              <Link
+                to="/menu"
+                className="uppercase border-b-2 bg-transparent text-white border-white py-2 px-4 font-inter font-semibold mt-6 rounded-md hover:text-gray-300 hover:border-gray-300"
+              >
+                See More
+              </Link>
             </div>
           </div>
         </div>

@@ -27,7 +27,7 @@ const Register = () => {
       .then(() => {
         userInfo(data.name).then(() => {
           const user = { name: data.name, email: email };
-          fetch("http://localhost:5000/users", {
+          fetch("https://bistro-boss.vercel.app/users", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const Register = () => {
       .then((result) => {
         const loggedUser = result.user;
         const user = { name: loggedUser.displayName, email: loggedUser.email };
-        fetch("http://localhost:5000/users", {
+        fetch("https://bistro-boss.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -76,23 +76,26 @@ const Register = () => {
         style={{ backgroundImage: `url("${bg}")` }}
         className=" lg:pt-32 pt-24 pb-32"
       >
-        <div className="lg:w-1200 mx-auto px-4 lg:px-0 min-h-screen border rounded-xl shadow-2xl">
-          <div className="lg:flex flex-row-reverse justify-evenly items-center p-32">
+        <div className="lg:w-1200 mx-auto px-4 lg:px-0 border rounded-xl shadow-2xl">
+          <div className="lg:flex flex-row-reverse justify-evenly items-center gap-14">
             <img
               src={loginImg}
               alt=""
               className="w-1/2 hidden lg:block bg-transparent"
             />
+            <div class="divider divider-horizontal lg:my-8"></div>
             <form
               onSubmit={handleSubmit(handleRegister)}
               className="card-body font-inter"
             >
               <div className="text-center">
-                <h4 className="text-3xl font-bold">Register</h4>
+                <h4 className="text-3xl font-black text-primaryColor">
+                  Register
+                </h4>
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-bold text-xl">Name</span>
+                  <span className="label-text font-bold text-sm">Name</span>
                 </label>
                 <input
                   type="text"
@@ -108,7 +111,7 @@ const Register = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-bold text-xl">Email</span>
+                  <span className="label-text font-bold text-sm">Email</span>
                 </label>
                 <input
                   type="email"
@@ -124,7 +127,7 @@ const Register = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-bold text-xl">Password</span>
+                  <span className="label-text font-bold text-sm">Password</span>
                 </label>
                 <input
                   type="password"
@@ -154,24 +157,24 @@ const Register = () => {
                 <input
                   type="submit"
                   value="Register"
-                  className="btn btn-sm lg:btn-md bg-secondaryColor hover:bg-primaryColor normal-case border-0 text-white lg:text-xl shadow-lg"
+                  className="btn btn-sm lg:w-1/2 mx-auto hover:bg-secondaryColor bg-primaryColor normal-case border-0 text-white shadow"
                 />
               </div>
               <div className="text-center text-primaryColor">
-                <p className="lg:text-xl font-semibold">
+                <p className="text-xs font-semibold">
                   Already registered?{" "}
-                  <Link to="/login" className="font-bold">
+                  <Link to="/login" className="font-black underline">
                     Go to Login
                   </Link>
                 </p>
-                <p className="my-4">Or register with</p>
-                <div className="text-4xl flex justify-center items-center gap-10">
-                  <FaFacebook className="cursor-pointer" />
-                  <FaGoogle
-                    onClick={handleGoogleSignIn}
-                    className="cursor-pointer"
-                  />
-                  <FaGithub className="cursor-pointer" />
+                <div
+                  onClick={handleGoogleSignIn}
+                  className="text-lg shadow flex justify-center items-center gap-3 mt-3 bg-white py-3 rounded-3xl cursor-pointer"
+                >
+                  <span className="text-sm font-bold">
+                    Continue with Google
+                  </span>
+                  <FaGoogle />
                 </div>
               </div>
             </form>

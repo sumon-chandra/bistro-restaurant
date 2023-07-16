@@ -6,7 +6,7 @@ import useUser from "../../../hooks/useUser";
 const AllUsersTable = ({ user, index }) => {
   const [, refetch] = useUser();
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user.email}`, {
+    fetch(`https://bistro-boss.vercel.app/users/admin/${user.email}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -29,7 +29,7 @@ const AllUsersTable = ({ user, index }) => {
       className: "cart-swal",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://bistro-boss.vercel.app/users/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
