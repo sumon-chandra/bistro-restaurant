@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
+import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import bg from "../assets/others/pattern.png";
 import loginImg from "../assets/others/register.png";
 import { AuthContext } from "../context-provider/AuthProvider";
@@ -14,6 +14,7 @@ const Login = () => {
     formState: { errors },
     reset,
   } = useForm();
+  const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -84,7 +85,7 @@ const Login = () => {
                   required
                   {...register("email", { required: true })}
                   placeholder="Enter Your Email"
-                  className="input"
+                  className="input text-sm"
                 />
                 {errors.name && (
                   <span className="text-red-400 text-xs font-semibold mt-2">
@@ -92,16 +93,23 @@ const Login = () => {
                   </span>
                 )}
               </div>
-              <div className="form-control">
+              <div className="form-control relative">
                 <label className="label">
                   <span className="label-text font-bold text-sm">Password</span>
                 </label>
                 <input
-                  type="password"
+                  type={showPass ? "text" : "password"}
                   {...register("password", { required: true })}
                   placeholder="Enter Your Password"
-                  className="input"
+                  className="input text-sm"
                 />
+                <span className="text-lg absolute right-4 bottom-11 cursor-pointer">
+                  {showPass ? (
+                    <FaEyeSlash onClick={() => setShowPass(false)} />
+                  ) : (
+                    <FaEye onClick={() => setShowPass(true)} />
+                  )}
+                </span>
                 {errors.name && (
                   <span className="text-red-400 text-xs font-semibold mt-2">
                     This field is required

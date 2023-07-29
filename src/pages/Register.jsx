@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
+import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import bg from "../assets/others/pattern.png";
 import loginImg from "../assets/others/register.png";
 import { AuthContext } from "./../context-provider/AuthProvider";
@@ -14,6 +14,7 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [showPass, setShowPass] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { createNewUser, signInWithGoogle, userInfo } = useContext(AuthContext);
@@ -101,7 +102,7 @@ const Register = () => {
                   type="text"
                   {...register("name", { required: true })}
                   placeholder="Enter Your Name"
-                  className="input"
+                  className="input text-sm"
                 />
                 {errors.name && (
                   <span className="text-red-400 text-xs font-semibold mt-2">
@@ -117,7 +118,7 @@ const Register = () => {
                   type="email"
                   {...register("email", { required: true })}
                   placeholder="Enter Your Email"
-                  className="input"
+                  className="input text-sm"
                 />
                 {errors.email && (
                   <span className="text-red-400 text-xs font-semibold mt-2">
@@ -125,19 +126,26 @@ const Register = () => {
                   </span>
                 )}
               </div>
-              <div className="form-control">
+              <div className="form-control relative">
                 <label className="label">
                   <span className="label-text font-bold text-sm">Password</span>
                 </label>
                 <input
-                  type="password"
+                  type={showPass ? "text" : "password"}
                   {...register("password", {
                     required: true,
                     pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
                   })}
                   placeholder="Enter Your Password"
-                  className="input"
+                  className="input text-sm"
                 />
+                <span className="text-lg absolute right-4 bottom-3 cursor-pointer">
+                  {showPass ? (
+                    <FaEyeSlash onClick={() => setShowPass(false)} />
+                  ) : (
+                    <FaEye onClick={() => setShowPass(true)} />
+                  )}
+                </span>
                 {errors.password?.type === "required" && (
                   <span className="text-red-400 text-xs font-semibold mt-2">
                     This field is required.

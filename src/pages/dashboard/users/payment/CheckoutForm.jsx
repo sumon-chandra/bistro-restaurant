@@ -65,15 +65,13 @@ const CheckoutForm = ({ price, cart }) => {
       setTransactionId(paymentIntent.id);
       const paymentInfo = {
         transactionId: paymentIntent.id,
-        useName: user?.displayName,
-        useEmail: user?.email,
-        price,
-        cartItems: cart?.map((item) => item._id),
-        menuItems: cart?.map((item) => item.menuItemId),
-        itemNames: cart?.map((item) => item.name),
+        userName: user?.displayName,
+        userEmail: user?.email,
+        totalSpends: price,
+        purchasedItems: cart,
         quantity: cart.length,
         date: new Date(),
-        status: "Service Pending!",
+        status: "Pending",
       };
       axiosSecure.post("/payment", paymentInfo).then(({ data }) => {
         console.log(data);

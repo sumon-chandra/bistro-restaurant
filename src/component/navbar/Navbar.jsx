@@ -13,7 +13,6 @@ const Navbar = () => {
   const [cart] = useCart();
 
   const [isAdmin, isAdminLoading] = useAdmin();
-  console.log(isAdmin);
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -82,7 +81,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="flex items-center">
-          {!isAdmin && (
+          {!isAdmin && user && (
             <NavLink
               to="/dashboard/my-cart"
               className="indicator mr-4 hover:text-[#EEFF25]"
