@@ -36,9 +36,6 @@ const Navbar = () => {
         <NavItem value="Home" to="/" />
       </li>
       <li>
-        <NavItem value="Contact us" to="/contact" />
-      </li>
-      <li>
         <NavItem
           value="Dashboard"
           to={`dashboard/${isAdmin ? "admin" : "user"}`}
@@ -49,6 +46,9 @@ const Navbar = () => {
       </li>
       <li>
         <NavItem value="Our shop" to="/shop/salad" />
+      </li>
+      <li>
+        <NavItem value="Contact us" to="/contact" />
       </li>
     </>
   );

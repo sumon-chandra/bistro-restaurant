@@ -51,20 +51,21 @@
   border-bottom: 4px solid #d1a054;
   color: #d1a054;
   outline: 0 !important;
+  background-color: transparent;
 }
 
 /* !!!!!!! Dashboard Navbar !!!!!!!! */
-.dashboard-navbar > a.active{
+.dashboard-navbar > a.active {
   color: white;
 }
 
 /* !!!!!!! Sweet alert !!!!!!!! */
-.swal2-styled.swal2-confirm{
-  background-color: #d1a054!important;
+.swal2-styled.swal2-confirm {
+  background-color: #d1a054 !important;
 }
 
 /* !!!!!!! Add item form glass background style !!!!!!!! */
-.add-items > .glass{
+.add-items > .glass {
   backdrop-filter: blur(var(--glass-blur, 2px)) !important;
   background-color: #73737375 !important;
 }

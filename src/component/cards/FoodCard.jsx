@@ -36,9 +36,9 @@ const FoodCard = ({ item }) => {
     }
   };
   return (
-    <div className="bg-slate-100 font-inter lg:w-full mt-4 lg:mt-0 relative">
+    <div className="bg-white shadow-lg font-inter lg:w-full mt-4 lg:mt-0 relative">
       <div className="card lg:flex ">
-        <figure>
+        <figure className="p-4">
           <img src={item.image} alt="" className="w-full h-72 object-cover" />
         </figure>
         <div className="card-body text-center">
@@ -47,13 +47,13 @@ const FoodCard = ({ item }) => {
           <div className="mx-auto text-center">
             <button
               onClick={() => handleAddToCart(item)}
-              className="uppercase border-b-2 bg-slate-200 text-primaryColor border-primaryColor py-2 px-4 font-inter font-semibold mt-6 rounded-md hover:text-secondaryColor hover:border-secondaryColor"
+              className="uppercase bg-primaryColor text-white text-sm font-bold py-2 px-4 font-inter mt-6 rounded-md hover:text-slate-100"
             >
               Add to Card
             </button>
           </div>
         </div>
-        <div className="font-semibold absolute bg-black text-white top-4 right-4 px-4 py-1 rounded-md shadow-lg">
+        <div className="font-semibold absolute bg-black text-white top-8 right-8 px-4 py-1 rounded-md shadow-lg">
           ${item.price}
         </div>
       </div>

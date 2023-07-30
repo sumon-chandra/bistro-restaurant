@@ -7,17 +7,22 @@ import shopBanner from "../assets/shop/banner2.jpg";
 import SectionHead from "./../component/sections/SectionHead";
 import FoodCategory from "../component/shop/FoodCategory";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 const Shop = () => {
-  const categories = ["salad", "pizza", "soup", "deserts", "drinks"];
+  const categories = ["salad", "pizza", "soup", "dessert", "drinks"];
   const { category } = useParams();
   const defaultTab = categories.indexOf(category);
   const [tabIndex, setTabIndex] = useState(defaultTab);
   const { menu } = useMenu();
   const drinks = menu.filter((item) => item.category === "drinks");
-  const desserts = menu.filter((item) => item.category === "dessert");
+  const dessert = menu.filter((item) => item.category === "dessert");
   const pizza = menu.filter((item) => item.category === "pizza");
   const salads = menu.filter((item) => item.category === "salad");
   const soups = menu.filter((item) => item.category === "soup");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Helmet>
@@ -37,16 +42,16 @@ const Shop = () => {
             <Tab className="border-b-4 border-transparent py-2 cursor-pointer hover:text-primaryColor border-primaryColor">
               Salad
             </Tab>
-            <Tab className="border-b-4 border-transparent p-2 cursor-pointer">
+            <Tab className="border-b-4 border-transparent p-2 cursor-pointer hover:text-primaryColor ">
               Pizza
             </Tab>
-            <Tab className="border-b-4 border-transparent p-2 cursor-pointer">
+            <Tab className="border-b-4 border-transparent p-2 cursor-pointer hover:text-primaryColor ">
               Soups
             </Tab>
-            <Tab className="border-b-4 border-transparent p-2 cursor-pointer">
+            <Tab className="border-b-4 border-transparent p-2 cursor-pointer hover:text-primaryColor ">
               Deserts
             </Tab>
-            <Tab className="border-b-4 border-transparent p-2 cursor-pointer">
+            <Tab className="border-b-4 border-transparent p-2 cursor-pointer hover:text-primaryColor ">
               Drinks
             </Tab>
           </TabList>
@@ -61,7 +66,7 @@ const Shop = () => {
               <FoodCategory items={soups} />
             </TabPanel>
             <TabPanel>
-              <FoodCategory items={desserts} />
+              <FoodCategory items={dessert} />
             </TabPanel>
             <TabPanel>
               <FoodCategory items={drinks} />

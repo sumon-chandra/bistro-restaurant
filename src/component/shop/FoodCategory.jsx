@@ -2,7 +2,7 @@ import FoodCard from "../cards/FoodCard";
 
 const FoodCategory = ({ items }) => {
   return (
-    <div className="lg:grid grid-cols-3 gap-10">
+    <div className="lg:grid grid-cols-3 gap-10 mb-8">
       {items.map((item) => (
         <FoodCard key={item._id} item={item} />
       ))}
