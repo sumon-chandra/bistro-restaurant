@@ -6,11 +6,21 @@ import NavItem from "./NavItem";
 import useCart from "../../hooks/useCart";
 import useAuth from "../../hooks/useAuth";
 import useAdmin from "./../../hooks/useAdmin";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { user, logoutUser } = useAuth();
   const [cart] = useCart();
+
+  // ! Navbar animation - When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar
+  const [previousScrollPos, setPreviousScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const handleScrolling = () => {
+    const currentScrollPos = window.pageYOffset;
+    setVisible(previousScrollPos > currentScrollPos);
+    setPreviousScrollPos(currentScrollPos);
+  };
 
   const [isAdmin, isAdminLoading] = useAdmin();
   const handleLogout = () => {
@@ -52,8 +62,17 @@ const Navbar = () => {
       </li>
     </>
   );
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScrolling);
+    return () => window.addEventListener("scroll", handleScrolling);
+  }, [previousScrollPos, visible]);
   return (
-    <nav className="navbar bg-gradient-to-b from-black to-[#15151500] fixed top-0 py-2 lg:px-12 left-0  z-40">
+    <nav
+      className={`navbar bg-gradient-to-b from-black to-[#15151500] fixed transition-all ${
+        visible ? "top-0 duration-500" : "-top-full duration-500"
+      } py-2 lg:px-12 left-0  z-40`}
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className=" lg:hidden">
